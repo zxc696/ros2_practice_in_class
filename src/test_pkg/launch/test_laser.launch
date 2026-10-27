@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="test_pkg" exec="laser_subscriber" name="laser_subscriber" output="screen"/>
+    <node pkg="test_pkg" exec="laser_publisher" name="laser_publisher" output="screen"/>
+</launch>
