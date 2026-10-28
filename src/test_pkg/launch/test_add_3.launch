@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="test_pkg" exec="server_3" name="add_two_ints_server" output="screen"/>
+    <executable cmd="$(find-pkg-prefix test_pkg)/lib/test_pkg/client_3 1 2 3" output="screen"/>
+</launch>

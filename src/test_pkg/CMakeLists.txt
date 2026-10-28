@@ -17,6 +17,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Num.msg"
   "msg/Sphere.msg"
   "msg/LaserData.msg"
+  "srv/AddThreeInts.srv"
   "srv/MulThreeInts.srv"
   DEPENDENCIES geometry_msgs std_msgs
 )
@@ -33,8 +34,10 @@ add_executable(temp_talker src/temp_talker.cpp)
 add_executable(temp_listener src/temp_listener.cpp)
 add_executable(server_2 src/add_two_ints_server.cpp)
 add_executable(client_2 src/add_two_ints_client.cpp)
-add_executable(server_3 src/mul_3_ints_server.cpp)
-add_executable(client_3 src/mul_3_ints_client.cpp)
+add_executable(server_3 src/add_3_ints_server.cpp)
+add_executable(client_3 src/add_3_ints_client.cpp)
+add_executable(server_mul src/mul_3_ints_server.cpp)
+add_executable(client_mul src/mul_3_ints_client.cpp)
 
 ament_target_dependencies(hello_world_node rclcpp)
 ament_target_dependencies(hello_world_1Hz rclcpp)
@@ -48,11 +51,15 @@ ament_target_dependencies(server_2 rclcpp example_interfaces)
 ament_target_dependencies(client_2 rclcpp example_interfaces)
 ament_target_dependencies(server_3 rclcpp example_interfaces)
 ament_target_dependencies(client_3 rclcpp example_interfaces)
+ament_target_dependencies(server_mul rclcpp example_interfaces)
+ament_target_dependencies(client_mul rclcpp example_interfaces)
 
 target_link_libraries(laser_subscriber "${cpp_typesupport_target}")
 target_link_libraries(laser_publisher "${cpp_typesupport_target}")
 target_link_libraries(server_3 "${cpp_typesupport_target}")
 target_link_libraries(client_3 "${cpp_typesupport_target}")
+target_link_libraries(server_mul "${cpp_typesupport_target}")
+target_link_libraries(client_mul "${cpp_typesupport_target}")
 
 install(TARGETS hello_world_node DESTINATION lib/${PROJECT_NAME})
 install(TARGETS hello_world_1Hz DESTINATION lib/${PROJECT_NAME})
@@ -66,6 +73,8 @@ install(TARGETS server_2 DESTINATION lib/${PROJECT_NAME})
 install(TARGETS client_2 DESTINATION lib/${PROJECT_NAME})
 install(TARGETS server_3 DESTINATION lib/${PROJECT_NAME})
 install(TARGETS client_3 DESTINATION lib/${PROJECT_NAME})
+install(TARGETS server_mul DESTINATION lib/${PROJECT_NAME})
+install(TARGETS client_mul DESTINATION lib/${PROJECT_NAME})
 
 install(PROGRAMS scripts/hello.py DESTINATION lib/${PROJECT_NAME})
 
